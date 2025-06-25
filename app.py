@@ -11,7 +11,7 @@ def load_sheet():
     creds_dict = st.secrets["gcp_service_account"]
     credentials = Credentials.from_service_account_info(creds_dict)
     gc = gspread.authorize(credentials)
-    sh = gc.open("https://docs.google.com/spreadsheets/d/18HV4lKeKbyQWx8CIiknc4VpKTbEVPDdb/edit?usp=sharing&ouid=107770286044974067647&rtpof=true&sd=true")
+    sh = gc.open_by_key("18HV4lKeKbyQWx8CIiknc4VpKTbEVPDdb")
     ws = sh.get_worksheet(0)
     df = get_as_dataframe(ws).dropna(how='all')
     df["Available Qty"] = pd.to_numeric(df["Available Qty"], errors="coerce").fillna(0).astype(int)
