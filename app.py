@@ -9,9 +9,9 @@ from google.oauth2.service_account import Credentials
 # Load from Google Sheets
 def load_sheet():
     creds_dict = st.secrets["gcp_service_account"]
+    scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
     st.write("Auth scope set:", scope)
     st.write("Client email loaded:", creds_dict["client_email"])
-    scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
     credentials = Credentials.from_service_account_info(creds_dict)
     gc = gspread.authorize(credentials)
     sh = gc.open_by_key("1PrsSMbPddsn1FnjC4Fao2XJ63f1kG4u8X9aWZwmdK1A")
