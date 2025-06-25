@@ -14,7 +14,7 @@ def load_sheet():
     st.write("Client email loaded:", creds_dict["client_email"])
     credentials = Credentials.from_service_account_info(creds_dict)
     gc = gspread.authorize(credentials)
-    sh = gc.open_by_key("1PrsSMbPddsn1FnjC4Fao2XJ63f1kG4u8X9aWZwmdK1A")
+    sh = gc.open_by_key("18HV4lKeKbyQWx8CIiknc4VpKTbEVPDdb")
     ws = sh.get_worksheet(0)
     df = get_as_dataframe(ws).dropna(how='all')
     df["Available Qty"] = pd.to_numeric(df["Available Qty"], errors="coerce").fillna(0).astype(int)
